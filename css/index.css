@@ -5,7 +5,7 @@
 }
 
 body::-webkit-scrollbar {display: none}
-html {scroll-behavior: smooth}
+html {scroll-behavior: smooth; overflow-x: hidden;}
 /* :target {scroll-margin-top: 20vh} */
 ::selection {background: rgba(29, 231, 164, 0.25)}
 a {text-decoration: none}
@@ -357,16 +357,11 @@ nav {
   > img {
     position: absolute;
     opacity: 1;
-    filter: brightness(.4) grayscale(.5);
+    filter: brightness(.4) grayscale(.5) blur(2px);
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
-  }
-  > img:nth-child(2) {
-    height: 100%;
-    filter: brightness(.4) grayscale(.5) blur(5px);
-    z-index: -1;
   }
 
   > h1 {
@@ -758,17 +753,6 @@ nav {
   }
 }
 
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
-
 @media (width < 1500px) {
   #about > :first-child { display: none !important; }
 }
@@ -807,13 +791,7 @@ input[type=number] {
 
 @media (width < 750px) {
   .seperator {
-    border-radius: 20px;
-    > img:nth-child(1) {
-      display: none;
-    }
-    > h1 {
-      word-break: break-all;
-    }
+    display: none;
   }
 
   #contact { flex-direction: column-reverse; }
