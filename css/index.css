@@ -22,6 +22,45 @@ body {
   padding-right: 18vw;
 }
 
+html:has(.errorPage) { overflow: hidden !important; }
+.errorPage {
+  height: 100vh;
+  overflow-y: hidden !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 80px;
+  text-align: center;
+
+  .back-txt {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 50vw;
+    z-index: -1;
+    opacity: .04;
+  }
+
+  h1 {
+    font-size: 100px;
+    font-weight: bolder;
+  }
+  h2 {
+    font-size: 80px;
+    font-weight: bold;
+  }
+  a {
+    margin-top: 40px;
+    width: fit-content;
+    padding: 10px 20px;
+    font-size: 40px;
+    border: solid 5px var(--secondary);
+    border-radius: 9em;
+    color: white;
+    font-weight: bolder
+  }
+}
+
 section, .seperator {
   position: relative;
   display: flex;
@@ -337,15 +376,16 @@ nav {
   }
 
   a:not(.more) h1 { font-size: 30px; }
-  a:not(.more) h1::after {
+  a h1::after {
     content: " ➜ ";
     position: absolute;
-    transform: translateX(-20px);
+    left: 48%;
+    transform: translateY(0);
     opacity: 0;
     transition: 400ms;
   }
-  a:not(.more):hover h1::after {
-    transform: translateX(2.5px);
+  a:hover h1::after {
+    transform: translateY(30px);
     opacity: 1;
   }
 
@@ -354,22 +394,17 @@ nav {
   }
 
   .more { border: solid 5px var(--thirdirary); }
-  .more h1::after {
-    content: "...";
-    position: absolute;
-  }
-  .more:hover > ::after {
-    animation: moreAni 1.8s infinite linear;
-  }
+  .more h1::after { content: "."; left: 46%; }
+  .more:hover > ::after { animation: moreAni 1.4s 400ms infinite linear; }
 }
 @keyframes moreAni {
-  33% {
+  0% {
     content: ".";
   }
-  66% {
+  33% {
     content: "..";
   }
-  100% {
+  66% {
     content: "...";
   }
 }
@@ -382,7 +417,7 @@ nav {
   border-radius: 10px;
   padding-bottom: 30px;
 
-  > img {
+  img {
     position: absolute;
     opacity: 1;
     filter: brightness(.4) grayscale(.5) blur(2px);
@@ -392,16 +427,15 @@ nav {
     width: 100%;
   }
 
-  > h1 {
+  h1 {
     font-size: 42px;
     width: 100%;
     text-align: center;
     margin: 50px 40px;
-    /* word-break: break-all; */
     z-index: +1;
   }
 
-  > a {
+  a {
     font-size: 25px;
     font-weight: 600;
     background: var(--secondary);
@@ -419,6 +453,7 @@ nav {
     bottom: 0;
   }
 }
+.seperator.youtube img { filter: brightness(.4) grayscale(.7) blur(6px); }
 
 #about {
   padding-top: 100px;
@@ -513,7 +548,7 @@ nav {
   margin-top: 100px;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 110px;
+  gap: 120px;
 
   > :nth-child(n) {
     max-width: fit-content;
@@ -577,7 +612,7 @@ nav {
           top: -40px;
         }
         h1:last-child {
-          bottom: -75px;
+          bottom: -80px;
         }
         div {
           opacity: 0;
