@@ -90,6 +90,7 @@ header {
   }
 
   .desc {
+    z-index: +1;
     width: 600px;
     display: flex;
     flex-direction: column;
