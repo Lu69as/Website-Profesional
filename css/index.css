@@ -78,10 +78,10 @@ header {
   > img:first-child {
     position: absolute;
     bottom: 0;
-    left: 0;
-    width: 100%;
+    left: -15%;
+    width: 120%;
     filter: grayscale(.8);
-    opacity: .2;
+    opacity: .1;
   }
 
   > img:last-child {
