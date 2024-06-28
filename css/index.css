@@ -69,8 +69,8 @@ section, .seperator {
 header {
   position: relative;
   display: flex;
-  justify-content: center;
-  padding: 200px 50px;
+  justify-content: space-between;
+  padding: 200px 0;
   padding-bottom: 0;
   background: var(--thirdirary);
   box-shadow: 50vw 0 var(--thirdirary), -50vw 0 var(--thirdirary);
@@ -210,10 +210,10 @@ header {
 }
 @keyframes employment-txt {
   from {
-    left: var(--employment-txt-left);
+    left: 0;
   }
   to {
-    left: 0;
+    left: var(--employment-txt-left);
   }
 }
 
@@ -265,7 +265,7 @@ nav {
   padding-bottom: 50px;
   height: fit-content;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
   gap: 5%;
 
   > h1 {
@@ -279,6 +279,7 @@ nav {
     width: 350px;
     font-size: 35px;
     margin-bottom: 50px;
+    margin-inline: auto;
     overflow: hidden;
 
     > h1 i {
@@ -465,8 +466,8 @@ nav {
     position: relative;
     img {
       position: absolute;
-      width: 100%;
-      max-width: 70vh;
+      max-width: 100%;
+      max-height: 100%;
       bottom: 20px;
     }
     div {
@@ -524,6 +525,7 @@ nav {
         font-size: 17px;
       }
       a:first-child {
+        min-width: 130px;
         box-shadow: inset 0 0 #c56084;
         background: var(--secondary);
         outline: solid 2px var(--thirdirary);
@@ -532,6 +534,7 @@ nav {
         box-shadow: inset 0 60px #c56084;
       }
       a:last-child {
+        min-width: 150px;
         margin-right: 20px;
         box-shadow: inset 0 0 white;
         background: transparent;
@@ -859,4 +862,38 @@ nav {
   }
 
   #contact { flex-direction: column-reverse; }
+}
+
+@media (width < 450px) {
+  #education .schools1 .school, #education .schools2 .school {
+    width: 200px;
+
+    h1 {
+      font-size: 20px;
+    }
+  }
+  #education .schools1 .school:hover {
+    h1:first-child{
+      top: -30px;
+    }
+    h1:last-child {
+      bottom: -55px;
+    }
+    div {
+      opacity: 0;
+      transition: 800ms;
+    }
+  }
+  #education .schools2 .school {
+    h1:first-child{
+      top: -30px;
+    }
+    h1:last-child {
+      bottom: -55px;
+    }
+    div {
+      opacity: 0;
+      transition: 800ms;
+    }
+  }
 }
