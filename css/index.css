@@ -4,9 +4,8 @@
   --thirdirary: #222;
 }
 
-body::-webkit-scrollbar {display: none}
 html {scroll-behavior: smooth; overflow-x: hidden;}
-/* :target {scroll-margin-top: 20vh} */
+:target {scroll-margin-top: 10vh}
 ::selection {background: rgba(29, 231, 164, 0.25)}
 a {text-decoration: none}
 * {margin: 0;}
@@ -15,9 +14,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;
-  overflow-x: hidden;
   background-color: var(--main);
-  top: 0 !important;
   padding-left: 18vw;
   padding-right: 18vw;
 }
@@ -64,13 +61,27 @@ html:has(.errorPage) { overflow: hidden !important; }
 section, .seperator {
   position: relative;
   display: flex;
+
+  > h1 { position: relative; font-size: 50px; width: 100%; }
+  &:not(.seperator) > h1::before {
+    content: " ";
+    position: absolute;
+    width: 60%;
+    height: 10px;
+    background: var(--secondary);
+    border-radius: 3px;
+    opacity: .1;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -20%);
+    z-index: -1;
+  }
 }
 
 header {
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 200px 0;
+  padding: 260px 0;
   padding-bottom: 0;
   background: var(--thirdirary);
   box-shadow: 50vw 0 var(--thirdirary), -50vw 0 var(--thirdirary);
@@ -86,7 +97,8 @@ header {
 
   > img:last-child {
     filter: drop-shadow(0 0 60px black) grayscale(.0);
-    width: 400px;
+    height: 400px;
+    aspect-ratio: 1;
   }
 
   .desc {
@@ -193,7 +205,6 @@ header {
   height: 65px;
   width: 100vw;
   background: var(--secondary);
-  z-index: 102;
 
   p {
     position: absolute;
@@ -218,15 +229,14 @@ header {
 }
 
 nav {
-  position: sticky;
+  position: fixed;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   width: 100vw;
   margin-left: -18vw;
-  margin-top: -65px;
   height: 60px;
-  top: 0;
   z-index: 101;
+  top: 0;
   font-weight: bolder;
   
   > a {
@@ -236,6 +246,7 @@ nav {
     padding: 15px 10px;
     left: 18vw;
     bottom: -30%;
+    box-shadow: 0 15px 30px -10px black;
   }
   > div {
     justify-content: right;
@@ -270,8 +281,6 @@ nav {
 
   > h1 {
     text-align: center;
-    width: 100%;
-    font-size: 50px;
     margin: 50px 0;
   }
 
@@ -354,14 +363,7 @@ nav {
       position: absolute;
       width: 100%;
       height: 100%;
-      filter: blur(10px);
-    }
-
-    div {
-      width: 100%;
-      height: 100%;
-      filter: blur(10px);
-      background: rgba(0, 0, 0, 0.6);
+      filter: blur(10px) brightness(.5);
       transition: 400ms;
     }
 
@@ -389,6 +391,11 @@ nav {
   a:hover h1::after {
     transform: translateY(30px);
     opacity: 1;
+  }
+  a:hover img {
+    filter: blur(10px) brightness(.4);
+    rotate: -5deg;
+    scale: 1.2;
   }
 
   a:not(.more):nth-child(n+6) {
@@ -543,6 +550,82 @@ nav {
       a:last-child:hover {
         box-shadow: inset 0 60px white;
         color: var(--thirdirary);
+      }
+    }
+  }
+}
+
+#favorites {
+  margin-bottom: 150px;
+  margin-top: 50px;
+  flex-direction: column;
+  gap: 40px;
+
+  * { color: white; text-align: center; width: 100%; }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+
+    a {
+      position: relative;
+      width: 300px;
+      aspect-ratio: 1;
+      border-radius: 20px;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        aspect-ratio: 1;
+        filter: brightness(.4) blur(5px);
+        border-radius: inherit;
+        transition: 400ms;
+      }
+      h1 {
+        font-size: 26px;
+        transition: 400ms;
+      }
+      .desc, h1 {
+        position: absolute;
+        text-transform: uppercase;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: bold;
+
+        h2 {
+          font-size: 20px;
+          opacity: 0;
+          transition: 400ms;
+        }
+        p {
+          font-size: 15px;
+          opacity: 0;
+          transition: 400ms;
+        }
+      }
+      
+    }
+    a:hover {
+      img {
+        rotate: -5deg;
+        filter: brightness(.35) blur(5px);
+        scale: 1.2;
+      }
+      h1 {
+        opacity: .4;
+        filter: blur(2px);
+      }
+      .desc {
+        h2 { 
+          transform: translateY(-15px);
+          opacity: 1;
+        }
+        p {
+          transform: translateY(15px);
+          opacity: .8;
+        }
       }
     }
   }
@@ -755,6 +838,9 @@ nav {
       gap: 10px;
 
       > i {
+        height: 30px;
+        aspect-ratio: 1;
+        text-align: center;
         font-size: 30px;
         padding: 16px;
         border-radius: 9em;
