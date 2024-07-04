@@ -31,33 +31,31 @@ document.querySelectorAll('.age').forEach((e) => {
   e.innerHTML = ageCalc();
 })
 
-// document.querySelectorAll('#experience article > button').forEach((e) => {
-//   e.addEventListener('click', () => {
-//     document.querySelectorAll('#experience .window').forEach((e) => {
-//       e.classList.remove('open');
-//     })
-
-//     e.nextElementSibling.classList.add('open');
-
-//     e.nextElementSibling.firstElementChild.addEventListener("click", () => {
-//       e.nextElementSibling.classList.remove('open');
-//     })
-
-//     document.addEventListener('keydown', function(k) {
-//       if (k.key == 'Escape') e.nextElementSibling.classList.remove('open');
-//     })
-//   })
-// })
-
-// document.querySelectorAll('#experience .window section').forEach((e) => {
-//   e.lastElementChild.setAttribute('style', 'height: fit-content !important');
-//   e.lastElementChild.style.height = e.lastElementChild.offsetHeight + 'px';
-
-//   e.firstElementChild.addEventListener('click', () => {
-//     e.classList.toggle('closed');
-
-//     document.querySelectorAll('#experience .window section').forEach((x) => {
-//       if (x != e) x.classList.add('closed')
-//     })
-//   })
-// })
+window.onscroll = () => {
+  const currentPosition = window.scrollY;
+  let activeArticle = null;
+  const articles = document.querySelectorAll('article');
+  const firstArticle = articles[0] || 0; // setting default value to avoid errors
+  const lastArticle = articles[articles.length - 1] || 0; // setting default value to avoid errors
+  const offset = 100;
+  
+  document.querySelectorAll('article').forEach(article => {
+    // Defining the start and end of the article
+    const articleStart = article.offsetTop - offset;
+    const articleEnd = articleStart + article.offsetHeight;
+    
+    // Checking if postition of screen is within an article and then setting activeArticle to be equal to article
+    if (currentPosition >= articleStart && currentPosition <= articleEnd) {
+      activeArticle = article;
+    };
+  });
+  try {
+    document.querySelectorAll("nav > div a").forEach(navItem => {
+      navItem.classList.remove("active");
+      if (activeArticle.id.toLowerCase() == navItem.innerHTML.toLowerCase()) {
+        navItem.classList.add("active");
+      }
+    });
+  }
+  catch (err) {}
+}

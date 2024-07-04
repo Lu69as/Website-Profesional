@@ -54,11 +54,11 @@
     <img src="./img/me-noBg.png" alt="">
   </header>
 
-  <section id="employment">
+  <article id="employment">
     <p>
       I am employed as an Intern at Relevant AS
     </p>
-  </section>
+  </article>
 
   <nav>
     <a href="#">Home</a>
@@ -68,13 +68,18 @@
       <a href="#about">About</a>
       <!-- <a href="#reviews">Reviews</a> -->
       <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
+      <a href="#contact" onclick="
+        setTimeout(() => {
+          this.parentElement.querySelectorAll('a').forEach(navItem => { navItem.classList.remove('active'); });
+          this.classList.add('active')
+        }, 700);
+      ">Contact</a>
     </div>
   </nav>
 
-  <section id="experience">
+  <article id="experience">
     <h1>Experience and Work</h1>
-    <article>
+    <section>
       <h1>
         <i class="fa-solid fa-tv"></i>
         Web Design
@@ -87,8 +92,8 @@
         <h2>Skill: </h2>
         <div><span style="width: 75%; background: rgb(241, 255, 47)"></span></div>
       </div>
-    </article>
-    <article>
+    </section>
+    <section>
       <h1>
         <i class="fa-solid fa-code"></i>
         Front End
@@ -101,8 +106,8 @@
         <h2>Skill: </h2>
         <div><span style="width: 95%; background: green"></span></div>
       </div>
-    </article>
-    <article>
+    </section>
+    <section>
       <h1>
         <i class="fa-solid fa-terminal"></i>
         Back End
@@ -115,8 +120,8 @@
         <h2>Skill: </h2>
         <div><span style="width: 60%; background: orange"></span></div>
       </div>
-    </article>
-    <article>
+    </section>
+    <section>
       <h1>
         <i class="fa-solid fa-crop"></i>
         Picture Editing
@@ -129,8 +134,8 @@
         <h2>Skill: </h2>
         <div><span style="width: 90%; background: rgb(93, 151, 0)"></span></div>
       </div>
-    </article>
-    <article>
+    </section>
+    <section>
       <h1>
         <i class="fa-solid fa-clapperboard"></i>
         Video Editing
@@ -143,8 +148,8 @@
         <h2>Skill: </h2>
         <div><span style="width: 80%; background: greenyellow"></span></div>
       </div>
-    </article>
-    <article>
+    </section>
+    <section>
       <h1>
         <i class="fa-solid fa-people-carry-box"></i>
         Labour
@@ -157,10 +162,10 @@
         <h2>Skill: </h2>
         <div><span style="width: 85%; background: rgb(75, 122, 0)"></span></div>
       </div>
-    </article>
-  </section>
+    </section>
+  </article>
 
-  <section id="portfolio">
+  <article id="portfolio">
     <h1>Portfolio</h1>
     <a href="https://github.com/Lu69as/Old-Website" target="_blank" rel="noopener noreferrer">
       <img src="./img/portfolio/1st-site.png">
@@ -202,7 +207,7 @@
       <img src="./img/portfolio/DrumKit.png">
       <h1>Drum Kit <br> (Udemy)</h1>
     </a>
-  </section>
+  </article>
 
   <div class="seperator">
     <img src="./img/seperator.jpg" alt="">
@@ -210,7 +215,7 @@
     <a href="#contact">Contact me!</a>
   </div>
 
-  <section id="about">
+  <article id="about">
     <div><img src="./img/about/me-raceSuit.png" alt="image of me"><div></div></div>
     <div>
       <h1><i class="fa-regular fa-folder-open"></i> About me</h1>
@@ -240,8 +245,8 @@
         <a href="./img/about/cv.pdf" download="cv"><i class="fa-solid fa-download"></i> DOWNLOAD CV</a>
       </div>
     </div>
-  </section>
-  <section id="favorites">
+  </article>
+  <div id="favorites">
     <h1>My current favorites</h1>
     <div class="container">
       <a href="https://www.youtube.com/watch?v=n3kDc9M2kqE&pp=ygUKaGlnaCBob3Blcw%3D%3D" target="_blank">
@@ -269,9 +274,9 @@
         </div>
       </a>
     </div>
-  </section>
+  </div>
 
-  <!-- <section id="reviews">
+  <!-- <article id="reviews">
     <div>
       <p>Lorem Ipsum</p>
       <img src="" alt="">
@@ -290,7 +295,7 @@
       <h1></h1>
       <h2></h2>
     </div>
-  </section> -->
+  </article> -->
 
   <div class="seperator youtube">
     <img src="./img/portfolio/youtube.jpg" alt="">
@@ -298,7 +303,7 @@
     <a href="https://www.youtube.com/c/lu69as" target="_blank">Check out my YouTube!</a>
   </div>
 
-  <section id="education">
+  <article id="education">
     <div class="schools1">
         <a class="school" href="https://www.halden.kommune.no/tjenester/undervisning-og-oppvekst/barnehage/alle-barnehager-i-halden/preg-barnehage-halden/" target="_blank" rel="noreferrer">
             <h1>2009 - 2012</h1>
@@ -328,7 +333,7 @@
         I got the grades to prove it as well if you are interested.
       </p>
     </div>
-  </section>
+  </article>
 
   <div class="transition">
     <svg id="visual" viewBox="0 0 1920 270" width="1920" height="270">
@@ -346,7 +351,7 @@
   </div>
 
   
-  <section id="contact">
+  <article id="contact">
     <form action="https://formcarry.com/s/ggg7Sx8KEko" method="POST" enctype="multipart/form-data">
       <h1>Give me a message!</h1>
       <input type="text" name="Name" placeholder="Name ..">
@@ -380,7 +385,7 @@
         <path d="M19 6V3H5L14 12L5 21H19V18" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </div>
-  </section>
+  </article>
 
   <style id="animation_employment"></style>
   <script src="./main.js"></script>

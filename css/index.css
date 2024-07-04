@@ -58,7 +58,7 @@ html:has(.errorPage) { overflow: hidden !important; }
   }
 }
 
-section, .seperator {
+article, .seperator, #favorites {
   position: relative;
   display: flex;
 
@@ -81,7 +81,7 @@ header {
   position: relative;
   display: flex;
   justify-content: space-between;
-  padding: 260px 0;
+  padding: 200px 0;
   padding-bottom: 0;
   background: var(--thirdirary);
   box-shadow: 50vw 0 var(--thirdirary), -50vw 0 var(--thirdirary);
@@ -205,6 +205,7 @@ header {
   height: 65px;
   width: 100vw;
   background: var(--secondary);
+  z-index: 102;
 
   p {
     position: absolute;
@@ -229,10 +230,11 @@ header {
 }
 
 nav {
-  position: fixed;
+  position: sticky;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
   width: 100vw;
+  margin-top: -60px;
   margin-left: -18vw;
   height: 60px;
   z-index: 101;
@@ -246,7 +248,6 @@ nav {
     padding: 15px 10px;
     left: 18vw;
     bottom: -30%;
-    box-shadow: 0 15px 30px -10px black;
   }
   > div {
     justify-content: right;
@@ -261,16 +262,12 @@ nav {
       padding: 20px 0;
       box-shadow: inset 0 10px transparent;
     }
+    a.active {
+      box-shadow: inset 0 10px var(--secondary);
+    }
     a:hover { opacity: 1; }
   }
 }
-
-:has(#experience:hover) nav > div :nth-child(1) { box-shadow: inset 0 10px var(--secondary); }
-:has(#about:hover) nav > div :nth-child(3){ box-shadow: inset 0 10px var(--secondary); }
-:has(#portfolio:hover) nav > div :nth-child(2){ box-shadow: inset 0 10px var(--secondary); }
-:has(#reviews:hover) nav > div :nth-child(4){ box-shadow: inset 0 10px var(--secondary); }
-:has(#education:hover) nav > div :nth-child(5){ box-shadow: inset 0 10px var(--secondary); }
-:has(#contact:hover) nav > div :nth-child(6){ box-shadow: inset 0 10px var(--secondary); }
 
 #experience {
   padding-bottom: 50px;
@@ -284,7 +281,7 @@ nav {
     margin: 50px 0;
   }
 
-  article {
+  section {
     width: 350px;
     font-size: 35px;
     margin-bottom: 50px;
@@ -361,10 +358,10 @@ nav {
 
     img {
       position: absolute;
-      width: 100%;
       height: 100%;
-      filter: blur(10px) brightness(.5);
-      transition: 400ms;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: 800ms;
     }
 
     h1 {
@@ -373,29 +370,37 @@ nav {
       text-align: center;
       width: 100%;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%) scale(1.2);
+      opacity: 0;
       font-size: 40px;
-      transition: 400ms;
+      transition: 800ms;
     }
   }
 
+  a:not(.more):hover {
+    img {
+      transform: translateX(-50%) rotate(-10deg) scale(1.3);
+      filter: brightness(.4) grayscale(.4);
+    }
+    h1 {
+      opacity: 1;
+      transform: translateY(-50%) scale(1);
+    }
+  }
   a:not(.more) h1 { font-size: 30px; }
-  a h1::after {
-    content: " ➜ ";
+
+  .more h1::after {
+    content: "."; 
     position: absolute;
-    left: 48%;
+    left: 46%;
     transform: translateY(0);
     opacity: 0;
-    transition: 400ms;
+    transition: 800ms;
   }
-  a:hover h1::after {
+  .more:hover h1::after {
+    animation: moreAni 1.4s 600ms infinite linear;
     transform: translateY(30px);
     opacity: 1;
-  }
-  a:hover img {
-    filter: blur(10px) brightness(.4);
-    rotate: -5deg;
-    scale: 1.2;
   }
 
   a:not(.more):nth-child(n+6) {
@@ -403,8 +408,9 @@ nav {
   }
 
   .more { border: solid 5px var(--thirdirary); }
-  .more h1::after { content: "."; left: 46%; }
-  .more:hover > ::after { animation: moreAni 1.4s 400ms infinite linear; }
+  .more h1 { opacity: 1; }
+  /* .more h1::after { content: "."; left: 46%; }
+  .more:hover > ::after { animation: moreAni 1.4s 400ms infinite linear; } */
 }
 @keyframes moreAni {
   0% {
@@ -429,15 +435,16 @@ nav {
   img {
     position: absolute;
     opacity: 1;
-    filter: brightness(.4) grayscale(.5) blur(2px);
+    filter: brightness(.3) grayscale(.6);
     left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 100%;
+    transition: 600ms;
   }
 
   h1 {
-    font-size: 42px;
+    font-size: 42px !important;
     width: 100%;
     text-align: center;
     margin: 50px 40px;
@@ -458,11 +465,14 @@ nav {
     transform: translateX(-50%);
     border-radius: 20px 20px 0 0;
   }
-  > a:hover {
-    bottom: 0;
+
+  &:has(a:hover) {
+    a { bottom: 0; }
+    img {
+      filter: brightness(.4) grayscale(.5);
+    }
   }
 }
-.seperator.youtube img { filter: brightness(.4) grayscale(.7) blur(6px); }
 
 #about {
   padding-top: 100px;
@@ -665,7 +675,7 @@ nav {
         &:first-child{
           position: absolute;
           top: -0px;
-          transition: 400ms;
+          transition: 600ms;
           
 
           &::after {
@@ -674,7 +684,7 @@ nav {
         }
         &:last-child {
           bottom: 10px;
-          transition: 400ms;
+          transition: 600ms;
         }
       }
       div {
@@ -682,9 +692,9 @@ nav {
         aspect-ratio: 1.5 / 1;
         border-radius: 15px;
         text-align: center;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(10px);
-        transition: 400ms;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(2px);
+        transition: 600ms;
       }
       img {
         width: 100%;
@@ -702,7 +712,8 @@ nav {
           bottom: -80px;
         }
         div {
-          opacity: 0;
+          background: rgba(0, 0, 0, 0.2);
+          backdrop-filter: blur(0);
           transition: 800ms;
         }
       }
