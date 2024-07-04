@@ -13,7 +13,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   color: white;
   background-color: var(--main);
   padding-left: 18vw;
@@ -207,6 +207,7 @@ header {
   width: 100vw;
   background: var(--secondary);
   z-index: 102;
+  overflow-x: hidden;
 
   p {
     position: absolute;
@@ -783,6 +784,7 @@ nav {
   width: 100vw;
   margin-left: -18vw;
   margin-bottom: -5px;
+  overflow-x: hidden;
   fill: var(--thirdirary);
 
   :nth-child(2) { fill: var(--main); }
